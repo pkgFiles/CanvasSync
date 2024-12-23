@@ -1,0 +1,5 @@
+1.0.1
+- Fixed a bug where the tweak would not function if the official Spotify app was not installed
+
+1.0
+- Initial Release

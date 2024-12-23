@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>items</key>
+	<array>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string> </string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>CanvasSyncPrefs.CSSingleCreditCell</string>
+			<key>height</key>
+			<real>60</real>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>General</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>CanvasSyncPrefs.CSSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>com.pkgfiles.canvassyncprefs</string>
+			<key>key</key>
+			<string>isTweakEnabled</string>
+			<key>cellTitleLabel</key>
+			<string>Enabled</string>
+			<key>cellSubtitleLabel</key>
+			<string>Enable/Disable the tweak.</string>
+			<key>height</key>
+			<real>60</real>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSegmentCell</string>
+			<key>detail</key>
+			<string>PSListItemsController</string>
+			<key>default</key>
+			<integer>0</integer>
+			<key>defaults</key>
+			<string>com.pkgfiles.canvassyncprefs</string>
+			<key>key</key>
+			<string>canvasStyle</string>
+			<key>validTitles</key>
+			<array>
+				<string>Both</string>
+				<string>Lockscreen</string>
+				<string>Homescreen</string>
+			</array>
+			<key>validValues</key>
+			<array>
+				<integer>0</integer>
+				<integer>1</integer>
+				<integer>2</integer>
+			</array>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Options</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSLinkCell</string>
+			<key>detail</key>
+			<string>CanvasSyncPrefs.CanvasSyncAppearanceVC</string>
+			<key>isController</key>
+			<true/>
+			<key>label</key>
+			<string>Appearance</string>
+			<key>icon</key>
+			<string>appearance.png</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerAlignment</key>
+			<real>1</real>
+			<key>footerText</key>
+			<string>Made with 🤎</string>
+			<key>isStaticText</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerAlignment</key>
+			<real>1</real>
+			<key>footerText</key>
+			<string>© 2024, ★ Install Package Files</string>
+			<key>isStaticText</key>
+			<true/>
+		</dict>
+	</array>
+	<key>title</key>
+	<string> </string>
+</dict>
+</plist>

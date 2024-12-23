@@ -1,0 +1,4 @@
+module CanvasSyncPrefsC {
+    umbrella "."
+    export *
+}

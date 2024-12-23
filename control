@@ -1,0 +1,12 @@
+Package: com.pkgfiles.canvassync
+Name: CanvasSync
+Version: 1.0.1
+Architecture: iphoneos-arm
+Description: Display artwork or Spotify Canvas as wallpaper.
+Maintainer: pkgFiles
+Author: pkgFiles
+Section: Tweaks
+Depends: dev.theos.orion14, firmware (>= 15.0)
+SileoDepiction: https://pkgfiles.github.io/sileodepictions/com.pkgfiles.canvassync/depiction.json
+Depiction: https://pkgfiles.github.io/depictions/?p=com.pkgfiles.canvassync
+Icon: https://raw.githubusercontent.com/pkgFiles/pkgfiles.github.io/main/assets/TweakIcons/CanvasSync.png
