@@ -28,6 +28,7 @@ import Orion
 import CanvasSyncC
 
 class BacklightControllerHook: ClassHook<SBBacklightController> {
+    typealias Group = CSSpringBoardBacklight
     
     func turnOnScreenFullyWithBacklightSource(_ arg1: Int64) {
         orig.turnOnScreenFullyWithBacklightSource(arg1)

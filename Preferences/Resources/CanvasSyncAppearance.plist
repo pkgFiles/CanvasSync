@@ -88,22 +88,38 @@
 			<key>label</key>
 			<string>Extras</string>
 		</dict>
-         <dict>
-             <key>cellClass</key>
-             <string>CanvasSyncPrefs.CSSwitchCell</string>
-             <key>default</key>
-             <false/>
-             <key>defaults</key>
-             <string>com.pkgfiles.canvassyncprefs</string>
-             <key>key</key>
-             <string>isDockBackgroundHidden</string>
-             <key>cellTitleLabel</key>
-             <string>Hide Dock Background</string>
-             <key>cellSubtitleLabel</key>
-             <string>Hides the Dock background while music is playing.</string>
-             <key>height</key>
-             <real>60</real>
-         </dict>
+        <dict>
+            <key>cellClass</key>
+            <string>CanvasSyncPrefs.CSSwitchCell</string>
+            <key>default</key>
+            <false/>
+            <key>defaults</key>
+            <string>com.pkgfiles.canvassyncprefs</string>
+            <key>key</key>
+            <string>isDockBackgroundHidden</string>
+            <key>cellTitleLabel</key>
+            <string>Hide Dock Background</string>
+            <key>cellSubtitleLabel</key>
+            <string>Hides the Dock background while music is playing.</string>
+            <key>height</key>
+            <real>60</real>
+        </dict>
+		<dict>
+            <key>cellClass</key>
+            <string>CanvasSyncPrefs.CSSwitchCell</string>
+            <key>default</key>
+            <false/>
+            <key>defaults</key>
+            <string>com.pkgfiles.canvassyncprefs</string>
+            <key>key</key>
+            <string>isAlwaysOnEnabled</string>
+            <key>cellTitleLabel</key>
+            <string>AOD (Always-On)</string>
+            <key>cellSubtitleLabel</key>
+            <string>Enable/Disable the uninterrupted video playback in Always-On mode.</string>
+            <key>height</key>
+            <real>60</real>
+        </dict>
 	</array>
 	<key>title</key>
 	<string>Appearance</string>

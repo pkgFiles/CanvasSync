@@ -17,6 +17,7 @@ struct CSSetNowPlayingInfo: HookGroup {}
 struct CSLockscreen: HookGroup { let lockscreenEnabled: Bool }
 struct CSHomescreen: HookGroup { let homescreenEnabled: Bool }
 struct CSSpringBoardDock: HookGroup { let isDockBackgroundHidden: Bool }
+struct CSSpringBoardBacklight: HookGroup { let isAlwaysOnEnabled: Bool }
 struct CanvasSync: Tweak {
     init() {
         remLog("Preferences Loading...")
@@ -26,13 +27,18 @@ struct CanvasSync: Tweak {
         let playingInfoHook: CSSetNowPlayingInfo = CSSetNowPlayingInfo()
         let lockscreenHook: CSLockscreen = CSLockscreen(lockscreenEnabled: canvasStyle == .both || canvasStyle == .lockscreen)
         let homescreenHook: CSHomescreen = CSHomescreen(homescreenEnabled: canvasStyle == .both || canvasStyle == .homescreen)
+        let springboardBacklightHook: CSSpringBoardBacklight = CSSpringBoardBacklight(isAlwaysOnEnabled: tweakPrefs.isAlwaysOnEnabled)
         let springboardDockHook: CSSpringBoardDock = CSSpringBoardDock(isDockBackgroundHidden: tweakPrefs.isDockBackgroundHidden)
         
         switch tweakPrefs.isTweakEnabled {
         case true:
             remLog("Tweak is Enabled! :)")
             playingInfoHook.activate()
-            if lockscreenHook.lockscreenEnabled { lockscreenHook.activate() }
+            if lockscreenHook.lockscreenEnabled {
+                lockscreenHook.activate()
+                if !springboardBacklightHook.isAlwaysOnEnabled { springboardBacklightHook.activate() }
+            }
+            
             if homescreenHook.homescreenEnabled {
                 homescreenHook.activate()
                 if springboardDockHook.isDockBackgroundHidden { springboardDockHook.activate() }

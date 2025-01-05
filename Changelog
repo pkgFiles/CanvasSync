@@ -1,3 +1,6 @@
+1.0.2
+- Added an option for AOD (Always-On Display)
+
 1.0.1
 - Fixed a bug where the tweak would not function if the official Spotify app was not installed
 

@@ -1,6 +1,6 @@
 Package: com.pkgfiles.canvassync
 Name: CanvasSync
-Version: 1.0.1
+Version: 1.0.2
 Architecture: iphoneos-arm
 Description: Display artwork or Spotify Canvas as wallpaper.
 Maintainer: pkgFiles

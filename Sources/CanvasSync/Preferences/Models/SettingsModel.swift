@@ -34,6 +34,7 @@ struct SettingsModel: DictionaryConvertor, Codable {
     // Appearance
     var isGradientEffectEnabled: Bool = true
     var isDockBackgroundHidden: Bool = false
+    var isAlwaysOnEnabled: Bool = false
     var appearanceStyle: Int = 0
     var gradientSize: Int = 1
 }
