@@ -40,18 +40,16 @@ class MediaControllerHook: ClassHook<SBMediaController> {
                     let fileManager = FileManager.default
                     let folderPath: String = "\(spotifyPath.path)/Documents/CanvasSync/"
                     
-                    if fileManager.fileExists(atPath: folderPath) {
-                        if let firstArtistName: String = currentSong.artist.components(separatedBy: ", ").first {
-                            let canvasFirstArtist = firstArtistName.replacingOccurrences(of: "/", with: "-")
-                            let canvasPath = folderPath + "\(canvasFirstArtist) - \(currentSong.title).mp4"
-                            if !self.isCanvasForThisSongAlreadySet(forPath: canvasPath) {
-                                if !canvasInstances.contains(where: { $0.playerView == nil }) && fileManager.fileExists(atPath: canvasPath) {
-                                    self.setCanvas(with: canvasPath)
-                                } else {
-                                    self.setArtwork(with: currentSong.artwork)
-                                }
-                                self.adjustExternalVideoPlayerLayers(isHidden: true)
+                    if let firstArtistName: String = currentSong.artist.components(separatedBy: ", ").first {
+                        let canvasFirstArtist = firstArtistName.replacingOccurrences(of: "/", with: "-")
+                        let canvasPath = folderPath + "\(canvasFirstArtist) - \(currentSong.title).mp4"
+                        if !self.isCanvasForThisSongAlreadySet(forPath: canvasPath) {
+                            if !canvasInstances.contains(where: { $0.playerView == nil }) && fileManager.fileExists(atPath: canvasPath) {
+                                self.setCanvas(with: canvasPath)
+                            } else {
+                                self.setArtwork(with: currentSong.artwork)
                             }
+                            self.adjustExternalVideoPlayerLayers(isHidden: true)
                         }
                     }
                 } else { self.setArtwork(with: currentSong.artwork) }
@@ -139,8 +137,8 @@ class MediaControllerHook: ClassHook<SBMediaController> {
     //orion:new
     func changeDockState() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            NotificationCenter.default.post(name: NSNotification.Name("DefaultDockSateChanged"), object: nil)
-            NotificationCenter.default.post(name: NSNotification.Name("FloatingDockSateChanged"), object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name("DefaultDockStateChanged"), object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name("FloatingDockStateChanged"), object: nil)
         }
     }
     

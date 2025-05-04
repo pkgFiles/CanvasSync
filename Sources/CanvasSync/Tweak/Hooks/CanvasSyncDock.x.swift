@@ -38,7 +38,7 @@ class SpringBoardDefaultDockHook: ClassHook<SBDockView> {
     
     //orion:new
     func addObserver() {
-        NotificationCenter.default.addObserver(target, selector: #selector(setHiddenOrVisible), name: NSNotification.Name("DefaultDockSateChanged"), object: nil)
+        NotificationCenter.default.addObserver(target, selector: #selector(setHiddenOrVisible), name: NSNotification.Name("DefaultDockStateChanged"), object: nil)
     }
     
     //orion:new
@@ -62,7 +62,7 @@ class SpringBoardFloatingDockHook: ClassHook<SBFloatingDockView> {
     
     //orion:new
     func addObserver() {
-        NotificationCenter.default.addObserver(target, selector: #selector(setHiddenOrVisible), name: NSNotification.Name("FloatingDockSateChanged"), object: nil)
+        NotificationCenter.default.addObserver(target, selector: #selector(setHiddenOrVisible), name: NSNotification.Name("FloatingDockStateChanged"), object: nil)
     }
     
     //orion:new
