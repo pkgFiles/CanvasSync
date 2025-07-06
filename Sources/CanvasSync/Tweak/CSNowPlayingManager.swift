@@ -63,8 +63,10 @@ class CSNowPlayingManager {
                     let newSongArtist = artistsComponent.components(separatedBy: ",").joined(separator: ",")
                     completion(.success((songArtwork, newSongTitle, newSongArtist)))
                 } else {
+                    guard let newSongArtist = songArtist.contains("\u{2022}")
+                            ? (songArtist.components(separatedBy: "\u{2022}").first?.trimmingCharacters(in: CharacterSet.whitespaces))
+                            : (songArtist.trimmingCharacters(in: .whitespaces)) else { return }
                     let newSongTitle = songTitle.trimmingCharacters(in: .whitespaces)
-                    let newSongArtist = songArtist.trimmingCharacters(in: .whitespaces)
                     completion(.success((songArtwork, newSongTitle, newSongArtist)))
                 }
             }
