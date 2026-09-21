@@ -2,7 +2,7 @@
  
  MIT License
 
- Copyright (c) 2024 ★ Install Package Files
+ Copyright (c) 2026 ★ Install Package Files
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -26,15 +26,29 @@
 
 import UIKit
 
-struct SettingsModel: DictionaryConvertor, Codable {
-    // General
-    var isTweakEnabled: Bool = false
-    var canvasStyle: Int = 0
+@available(iOS 13.0, *)
+extension PetIslandPetsVC {
     
-    // Appearance
-    var isGradientEffectEnabled: Bool = true
-    var isDockBackgroundHidden: Bool = false
-    var isAlwaysOnEnabled: Bool = false
-    var appearanceStyle: Int = 0
-    var gradientSize: Int = 1
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        tableView.tableHeaderView = headerView
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        
+        switch cell {
+        case is PIInfoButtonCell:
+            guard let cell = cell as? PIInfoButtonCell else { return cell }
+            cell.delegate = self
+            
+        case is PISwitchCell:
+            guard let cell = cell as? PISwitchCell else { return cell }
+            cell.delegate = self
+            
+        case is PIPetsTableCell:
+            guard let cell = cell as? PIPetsTableCell else { return cell }
+            cell.setup(with: self)
+            return cell
+            
+        default: break
+        }
+        return cell
+    }
 }
