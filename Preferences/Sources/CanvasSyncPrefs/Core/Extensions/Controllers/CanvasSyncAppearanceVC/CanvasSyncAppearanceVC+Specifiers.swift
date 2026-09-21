@@ -27,14 +27,14 @@
 import Foundation
 
 @available(iOS 13.0, *)
-extension PetIslandMiscellanousVC {
+extension CanvasSyncAppearanceVC {
     
     override var specifiers: NSMutableArray? {
         get {
             if let specifiers = value(forKey: "_specifiers") as? NSMutableArray {
                 return specifiers
             } else {
-                let specifiers = loadSpecifiers(fromPlistName: "PetIslandMiscellanous", target: self)
+                let specifiers = loadSpecifiers(fromPlistName: "CanvasSyncAppearance", target: self)
                 setValue(specifiers, forKey: "_specifiers")
                 return specifiers
             }

@@ -2,7 +2,7 @@
  
  MIT License
 
- Copyright (c) 2024 ★ Install Package Files
+ Copyright (c) 2026 ★ Install Package Files
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -27,15 +27,14 @@
 import UIKit
 
 class CSGradientView: UIView {
-
+    
     //MARK: - Variables
-    ///Preferences
-    private let gradientAlpha: CGFloat = 1.0
+    private var gradientLayer: CAGradientLayer { return self.layer as! CAGradientLayer }
     
     //MARK: - Overrides
     override class var layerClass: AnyClass { CAGradientLayer.self }
 
-    //MARK: - Initializer
+    //MARK: - Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -48,21 +47,12 @@ class CSGradientView: UIView {
     
     //MARK: - Functions
     private func setupUI() {
-        self.isOpaque = false
-        self.alpha = 0.0
-        
-        if let gradient = self.layer as? CAGradientLayer {
-            gradient.startPoint = CGPoint(x: 0.5, y: 0)
-            gradient.endPoint = CGPoint(x: 0.5, y: 1)
-            gradient.colors = [UIColor.clear.cgColor, UIColor.black.withAlphaComponent(gradientAlpha).cgColor]
-        }
+        self.translatesAutoresizingMaskIntoConstraints = false
+        gradientLayer.startPoint = CGPoint(x: 0.5, y: 0)
+        gradientLayer.endPoint = CGPoint(x: 0.5, y: 1)
     }
     
-    func hide() {
-        self.alpha = 0.0
-    }
-    
-    func show() {
-        self.alpha = 1.0
+    func setGradientAlpha(_ alpha: CGFloat) {
+        gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.withAlphaComponent(alpha).cgColor]
     }
 }

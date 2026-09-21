@@ -1,10 +1,26 @@
 #import <UIKit/UIKit.h>
 #import <MediaRemote/MediaRemote.h>
 #import <AVFoundation/AVFoundation.h>
-#import "SpringBoard.h"
 #import "RemoteLog.h"
 
 @interface CSCoverSheetViewController : UIViewController
+@end
+
+@interface SBBacklightController : NSObject
+@property (nonatomic,readonly) BOOL screenIsOn;
+@end
+
+@interface SBApplicationInfo : NSObject
+-(id)dataContainerURL;
+@end
+
+@interface SBApplicationController : NSObject
++(instancetype)sharedInstance;
+-(id)applicationWithBundleIdentifier:(id)arg1;
+@end
+
+@interface SBApplication : NSObject
+-(SBApplicationInfo *)info;
 @end
 
 @interface SBIconController : UIViewController
@@ -34,11 +50,9 @@
 
 @interface SBMediaController : NSObject
 +(instancetype)sharedInstance;
--(void)setNowPlayingInfo:(id)arg1;
 -(BOOL)isPlaying;
 -(BOOL)isPaused;
 @end
 
-@interface UIView(Private)
-- (__kindof UIViewController *)_viewControllerForAncestor;
+@interface NSDistributedNotificationCenter: NSNotificationCenter
 @end

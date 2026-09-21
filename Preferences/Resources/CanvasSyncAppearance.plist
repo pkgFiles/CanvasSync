@@ -22,7 +22,7 @@
 			<key>defaults</key>
 			<string>com.pkgfiles.canvassyncprefs</string>
 			<key>key</key>
-			<string>appearanceStyle</string>
+			<string>canvasStyle</string>
 			<key>validTitles</key>
 			<array>
 				<string>Both</string>
@@ -68,7 +68,7 @@
 			<key>defaults</key>
 			<string>com.pkgfiles.canvassyncprefs</string>
 			<key>key</key>
-			<string>gradientSize</string>
+			<string>canvasGradientSize</string>
 			<key>validTitles</key>
 			<array>
 				<string>Low</string>
@@ -101,22 +101,6 @@
             <string>Hide Dock Background</string>
             <key>cellSubtitleLabel</key>
             <string>Hides the Dock background while music is playing.</string>
-            <key>height</key>
-            <real>60</real>
-        </dict>
-		<dict>
-            <key>cellClass</key>
-            <string>CanvasSyncPrefs.CSSwitchCell</string>
-            <key>default</key>
-            <false/>
-            <key>defaults</key>
-            <string>com.pkgfiles.canvassyncprefs</string>
-            <key>key</key>
-            <string>isAlwaysOnEnabled</string>
-            <key>cellTitleLabel</key>
-            <string>AOD (Always-On)</string>
-            <key>cellSubtitleLabel</key>
-            <string>Enable/Disable the uninterrupted video playback in Always-On mode.</string>
             <key>height</key>
             <real>60</real>
         </dict>

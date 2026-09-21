@@ -2,10 +2,10 @@
 Showcase album artwork or Spotify Canvas as your device wallpaper. CanvasSync transforms your home or lock screen by dynamically displaying the currently playing track's visuals, creating a personalized and immersive listening experience.
 
 ## Compatibility
-Supports all iDevices with iOS >= 15.0.
+Supports all iDevices with iOS 15.0 - 18.7.1.
 
 ## Compiling
-- The tweak does not compile out of the box because the subproject (CanvasSyncSpotify) is not included in this repository due to personal decisions. To compile it, the Makefile must be adjusted. However, the project works flawlessly without the subproject (using artwork as the background instead of live canvas).
+- The tweak does not compile out of the box because the subproject (CanvasSyncSpotify) is not included in this repository due to personal decisions. To compile it, the Makefile must be adjusted and symlinks for missing files needs to be created.
 
 ## Preview
 <p align="center">

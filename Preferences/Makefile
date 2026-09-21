@@ -8,5 +8,6 @@ CanvasSyncPrefs_FILES = $(shell find Sources/CanvasSyncPrefs -name '*.swift') $(
 CanvasSyncPrefs_SWIFTFLAGS = -ISources/CanvasSyncPrefsC/include
 CanvasSyncPrefs_INSTALL_PATH = /Library/PreferenceBundles
 CanvasSyncPrefs_CFLAGS = -fobjc-arc
+CanvasSyncPrefs_SWIFT_BRIDGING_HEADER = Sources/CanvasSyncPrefs/Core/CanvasSyncPrefs-Bridging-Header.h
 
 include $(THEOS_MAKE_PATH)/bundle.mk

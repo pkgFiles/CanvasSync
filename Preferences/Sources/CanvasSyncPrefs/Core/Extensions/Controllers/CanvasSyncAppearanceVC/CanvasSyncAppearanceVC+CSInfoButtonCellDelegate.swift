@@ -28,7 +28,7 @@ import UIKit
 import AudioToolbox.AudioServices
 
 @available(iOS 13.0, *)
-extension PetIslandMiscellanousVC: PIInfoButtonCellDelegate {
+extension CanvasSyncAppearanceVC: CSInfoButtonCellDelegate {
     
     func showDetailsAlert(title: String, message: String) {
         AudioServicesPlayAlertSound(1521)

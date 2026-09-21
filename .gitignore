@@ -14,4 +14,15 @@ CanvasSyncSpotify/
 .swiftpm
 /Xcode
 /package
-.xcworkspace
+.xcworkspace./CanvasSyncSpotify/Sources/CanvasSyncSpotify/Tweak/Core/Models/CSCurrentTrack.swift
+./CanvasSyncSpotify/Sources/CanvasSyncSpotify/Tweak/Core/Extensions/NSNotification+Names.swift
+./Preferences/Sources/CanvasSyncPrefs/Core/Managers/JailbreakTweakManager.swift
+./Preferences/Sources/CanvasSyncPrefs/Core/Managers/JailbreakTweakPreferencesManager.swift
+./Preferences/Sources/CanvasSyncPrefs/Core/Models/PackageConfiguration.swift
+./Preferences/Sources/CanvasSyncPrefs/Core/Models/SettingsModel.swift
+CanvasSyncSpotify/Sources/CanvasSyncSpotify/Tweak/Core/Models/CSCurrentTrack.swift
+CanvasSyncSpotify/Sources/CanvasSyncSpotify/Tweak/Core/Extensions/NSNotification+Names.swift
+Preferences/Sources/CanvasSyncPrefs/Core/Managers/JailbreakTweakManager.swift
+Preferences/Sources/CanvasSyncPrefs/Core/Managers/JailbreakTweakPreferencesManager.swift
+Preferences/Sources/CanvasSyncPrefs/Core/Models/PackageConfiguration.swift
+Preferences/Sources/CanvasSyncPrefs/Core/Models/SettingsModel.swift

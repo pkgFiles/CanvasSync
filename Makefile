@@ -1,6 +1,6 @@
 TARGET := iphone:clang:latest:14.5
 INSTALL_TARGET_PROCESSES = SpringBoard
-THEOS_PACKAGE_SCHEME = rootless
+THEOS_PACKAGE_SCHEME = roothide
 
 include $(THEOS)/makefiles/common.mk
 
@@ -10,6 +10,7 @@ CanvasSync_FILES = $(shell find Sources/CanvasSync -name '*.swift') $(shell find
 CanvasSync_SWIFTFLAGS = -ISources/CanvasSyncC/include
 CanvasSync_CFLAGS = -fobjc-arc -ISources/CanvasSyncC/include
 CanvasSync_EXTRA_FRAMEWORKS = SpringBoard MediaRemote
+CanvasSync_SWIFT_BRIDGING_HEADER = Sources/CanvasSync/Tweak/Core/CanvasSync-Bridging-Header.h
 
 include $(THEOS_MAKE_PATH)/tweak.mk
 SUBPROJECTS += CanvasSyncSpotify

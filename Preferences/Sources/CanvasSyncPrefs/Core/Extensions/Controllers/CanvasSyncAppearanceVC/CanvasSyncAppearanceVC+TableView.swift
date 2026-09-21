@@ -27,19 +27,15 @@
 import UIKit
 
 @available(iOS 13.0, *)
-extension PetIslandMiscellanousVC {
+extension CanvasSyncAppearanceVC {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         tableView.tableHeaderView = headerView
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         
         switch cell {
-        case is PIInfoButtonCell:
-            guard let cell = cell as? PIInfoButtonCell else { return cell }
-            cell.delegate = self
-            
-        case is PISwitchCell:
-            guard let cell = cell as? PISwitchCell else { return cell }
+        case is CSSwitchCell:
+            guard let cell = cell as? CSSwitchCell else { return cell }
             cell.delegate = self
             
         default: break

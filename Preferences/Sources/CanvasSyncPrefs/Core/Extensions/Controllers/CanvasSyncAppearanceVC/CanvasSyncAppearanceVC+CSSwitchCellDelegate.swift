@@ -28,7 +28,7 @@ import Preferences
 import CanvasSyncPrefsC
 
 @available(iOS 13.0, *)
-extension PetIslandMiscellanousVC: PISwitchCellDelegate {
+extension CanvasSyncAppearanceVC: CSSwitchCellDelegate {
     
     func switchCell(valueChanged isOn: Bool, for specifier: PSSpecifier) {
         guard let propertyKey: String = specifier.property(forKey: "key") as? String else { return }
