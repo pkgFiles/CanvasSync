@@ -28,7 +28,7 @@ import Orion
 import CanvasSyncC
 
 // CanvasSync - Display artwork or Spotify Canvas as wallpaper.
-// For modern iOS 15.0 - 16.7.10
+// For modern iOS 15.0 - 18.7.1
 // Based on original from @sugiuta: https://havoc.app/package/canvaslife
 //MARK: - Variables
 let settings: SettingsModel = JailbreakTweakPreferencesManager.current.settings
