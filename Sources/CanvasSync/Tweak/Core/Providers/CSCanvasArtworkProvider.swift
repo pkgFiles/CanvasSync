@@ -63,10 +63,14 @@ import CanvasSyncC
     static let shared: CSCanvasArtworkProvider = .init()
     
     //MARK: - Variables
+    private let spotifyApplication: CSSpotifyApplication = .init()
     private let nowPlayingInfo: CSNowPlayingInfo = .init()
     private let audioSession: CSAudioSession = .init()
     private var canvasViews: [CSCanvasView] = []
     private var observerTask: Task<Void, Never>?
+    private var isSpotifyPlaying: Bool {
+        return nowPlayingInfo.isSpotifyCurrentPlaying(bundleIdentifier: spotifyApplication.bundleIdentifier())
+    }
     
     //MARK: - Initializers
     private init() {
@@ -87,6 +91,16 @@ import CanvasSyncC
         canvasViews.append(view)
     }
     
+    func handleTrackStatus() async throws {
+        // Set the artwork for the current playing song.
+        // Updating the artwork should always be happen, even if the song has a canvas in the filesystem.
+        try await updateArtwork()
+        
+        // If Spotify is no longer playing clear the canvas from memory.
+        // Just to be save in the case the application has been changed, without killing Spotify.
+        guard isSpotifyPlaying else { handleClearingStatus(shouldCleanArtwork: false); return }
+    }
+    
     func handlePlayingStatus(for isPlaying: Bool) {
         canvasViews.forEach({ isPlaying ? ($0.play()) : ($0.pause()) })
     }
@@ -103,7 +117,7 @@ import CanvasSyncC
         })
     }
     
-    func updateArtwork() async throws {
+    private func updateArtwork() async throws {
         do {
             let track: CSCurrentTrack = try await nowPlayingInfo.currentTrack()
             
@@ -115,8 +129,7 @@ import CanvasSyncC
             throw CSCanvasArtworkProvider.ProviderError(map: error)
         }
     }
-    
-    #warning("TODO: - There is a big issue here: Currently the clearation happen in here, but also need in uodateArtwork. Changing an app like Spotify to Youtube will not clear the current canvas.")
+
     private func updateCanvas(for path: String?) {
         guard let path = path else {
             // Clear everything up, since we don't have a canvas to set, we just want to show the artwork for the current track.

@@ -26,31 +26,12 @@
 
 import UIKit
 
-@available(iOS 13.0, *)
-extension CanvasSyncMainVC {
+extension UIImage {
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = super.tableView(tableView, cellForRowAt: indexPath)
-        
-        switch cell {            
-        case is CSSingleCreditCell:
-            guard let cell = cell as? CSSingleCreditCell else { return cell }
-            cell.delegate = self
-            cell.configure(for: mainDeveloper,
-                           with: UIImage(contentsOfFile: JailbreakTweakManager.shared.prefsAssetsPath + "/Credits/DefaultIcon.png"))
-            
-        case is CSSwitchCell:
-            guard let cell = cell as? CSSwitchCell else { return cell }
-            cell.delegate = self
-            
-        default: break
+    func resized(targetSize: CGSize) -> UIImage {
+        let renderer = UIGraphicsImageRenderer(size: targetSize, format: .preferred())
+        return renderer.image { _ in
+            self.draw(in: .init(origin: .zero, size: targetSize))
         }
-        return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        guard tableView.tableHeaderView == nil else { return }
-        tableView.tableHeaderView = headerView
-        tableView.contentInsetAdjustmentBehavior = .never
     }
 }

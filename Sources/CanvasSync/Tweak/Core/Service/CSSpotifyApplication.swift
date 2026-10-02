@@ -59,4 +59,8 @@ final class CSSpotifyApplication {
         guard let spotifyDataContainerURL = spotifyInfo.dataContainerURL() as? URL else { throw ApplicationError.noApplicationURL }
         return spotifyDataContainerURL
     }
+    
+    func bundleIdentifier() -> String {
+        return spotifyBundleIdentifier
+    }
 }

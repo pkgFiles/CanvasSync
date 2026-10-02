@@ -30,7 +30,6 @@ import UIKit
 extension CanvasSyncAppearanceVC {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        tableView.tableHeaderView = headerView
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         
         switch cell {
@@ -41,5 +40,11 @@ extension CanvasSyncAppearanceVC {
         default: break
         }
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        guard tableView.tableHeaderView == nil else { return }
+        tableView.tableHeaderView = headerView
+        tableView.contentInsetAdjustmentBehavior = .never
     }
 }

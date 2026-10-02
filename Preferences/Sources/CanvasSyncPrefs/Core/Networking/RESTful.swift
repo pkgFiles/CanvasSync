@@ -26,7 +26,6 @@
 
 import Foundation
 
-@available(iOS 13.0, *)
 final class RESTful {
     
     //MARK: - Enums
@@ -39,17 +38,6 @@ final class RESTful {
     private init() {}
     
     //MARK: - Functions
-    func download(at url: URL, completion: @escaping (Result<Data, Error>) -> Void) throws {
-        URLSession.shared.dataTask(with: URLRequest(url: url)) { data, response, error in
-            guard error == nil else { completion(.failure(error!)); return }
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else { completion(.failure(NSError(domain: "ResponseError", code: 1, userInfo: [NSLocalizedDescriptionKey: "The response is invalid or doesn't have a statusCode = 200!"]))); return }
-            guard let data = data else { completion(.failure(NSError(domain: "DataError", code: 1, userInfo: [NSLocalizedDescriptionKey: "Error retrieving data from task. No data has been found!"]))); return }
-            completion(.success(data))
-        }.resume()
-    }
-    
-    //MARK: - Unfortunately this doesn't work on iOS 14 and iOS 15.1
-    /*
     func fetch<T: Decodable>(path: String, header: [String: String] = ["Content-Type": "application/json"], with method: HTTPMethod, type: T.Type) async throws -> T {
         let (data, response) = try await URLSession.shared.data(for: urlRequest(path: path, with: header, for: method))
         guard let response = response as? HTTPURLResponse, response.statusCode == 200 else { throw NSError(domain: "ResponseError", code: 1, userInfo: [NSLocalizedDescriptionKey: "The response is invalid or doesn't have a statusCode = 200!"]) }
@@ -73,5 +61,4 @@ final class RESTful {
         header?.forEach({ request.setValue($0.value, forHTTPHeaderField: $0.key) })
         return request
     }
-    */
 }

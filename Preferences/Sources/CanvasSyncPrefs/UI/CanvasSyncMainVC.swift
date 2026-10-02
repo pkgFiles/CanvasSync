@@ -31,7 +31,7 @@ import CanvasSyncPrefsC
 class CanvasSyncMainVC: PSListController {
 
     //MARK: - Propertys
-    let headerView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 275))
+    let headerView = UIView(frame: .zero)
     
     //MARK: - Variables
     var mainDeveloper: Developer = .init(name: "★ Install Package Files", shorthand: "pkgFiles", social: [.twitterX, .kofi])
@@ -56,16 +56,20 @@ class CanvasSyncMainVC: PSListController {
         super.viewDidLoad()
         
         guard let avatarURL = URL(string: "https://github.com/\(mainDeveloper.shorthand).png") else { return }
-        try? RESTful.shared.download(at: avatarURL, completion: { [weak self] result in
-            switch result {
-            case .success(let avatarData):
-                self?.mainDeveloper.avatar = UIImage(data: avatarData)
-                DispatchQueue.main.async { self?.reload() }
-    
-            case .failure(let error):
-                remLog(error.localizedDescription)
+        
+        Task { @MainActor [weak self] in
+            guard let self = self else { return }
+            
+            do {
+                let avatarData = try await RESTful.shared.download(at: avatarURL)
+                guard let avatarImage = UIImage(data: avatarData) else { return }
+                
+                self.mainDeveloper.avatar = avatarImage.resized(targetSize: .init(width: 50, height: 50))
+                self.reload()
+            } catch {
+                self.showError("Error", error.localizedDescription)
             }
-        })
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -79,9 +83,6 @@ class CanvasSyncMainVC: PSListController {
         
         self.setNavBarThemed(enabled: false)
     }
-    
-    //MARK: - Overrides
-    override var preferredStatusBarStyle: UIStatusBarStyle { return .default }
     
     //MARK: - Functions
     private func setupUI() {
@@ -99,17 +100,22 @@ class CanvasSyncMainVC: PSListController {
         ]
         self.navigationItem.rightBarButtonItems = rightBarButtonItems
         
-        let bannerImageView = UIImageView(frame: headerView.bounds)
+        guard let image = UIImage(contentsOfFile: JailbreakTweakManager.shared.prefsAssetsPath + "/CSBanner.png") else { return }
+        let screenWidth: CGFloat = UIScreen.main.bounds.width
+        let aspectRatio: CGFloat = image.size.height / image.size.width
+        let calculatedHeight: CGFloat = screenWidth * aspectRatio
+        headerView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: calculatedHeight)
+        
+        let bannerImageView = UIImageView(image: image)
         bannerImageView.contentMode = .scaleAspectFit
-        bannerImageView.image = UIImage(contentsOfFile: JailbreakTweakManager.shared.prefsAssetsPath + "/CSBanner.png")
         bannerImageView.translatesAutoresizingMaskIntoConstraints = false
         headerView.addSubview(bannerImageView)
         
         NSLayoutConstraint.activate([
-            bannerImageView.topAnchor.constraint(equalTo: headerView.topAnchor, constant: -50),
+            bannerImageView.topAnchor.constraint(equalTo: headerView.topAnchor),
             bannerImageView.leadingAnchor.constraint(equalTo: headerView.leadingAnchor),
             bannerImageView.trailingAnchor.constraint(equalTo: headerView.trailingAnchor),
-            bannerImageView.bottomAnchor.constraint(equalTo: headerView.bottomAnchor),
+            bannerImageView.bottomAnchor.constraint(equalTo: headerView.bottomAnchor)
         ])
     }
     
@@ -124,7 +130,7 @@ class CanvasSyncMainVC: PSListController {
     
     @objc private func resetInstructions() {
         let alertController = UIAlertController(title: "Reset Tweak Settings", 
-                                                message: "Are you sure you want to reset all tweak settings? This will restore default instructions and disable the tweak.",
+                                                message: "Are you sure you want to reset all tweak settings? This will restore everything and disable the tweak.",
                                                 preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         let resetAction = UIAlertAction(title: "Reset", style: .destructive) { [weak self] _ in

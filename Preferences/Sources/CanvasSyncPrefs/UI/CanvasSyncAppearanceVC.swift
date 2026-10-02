@@ -30,7 +30,7 @@ import Preferences
 class CanvasSyncAppearanceVC: PSListController {
 
     //MARK: - Propertys
-    let headerView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 275))
+    let headerView = UIView(frame: .zero)
     
     //MARK: - Initializers
     override init(forContentSize contentSize: CGSize) {
@@ -63,18 +63,23 @@ class CanvasSyncAppearanceVC: PSListController {
     //MARK: - Functions
     private func setupUI() {
         self.view.clipsToBounds = true
-
-        let bannerImageView = UIImageView(frame: headerView.bounds)
-        bannerImageView.contentMode = .scaleAspectFill
-        bannerImageView.image = UIImage(contentsOfFile: JailbreakTweakManager.shared.prefsAssetsPath + "/CSAppearanceBanner.png")
+        
+        guard let image = UIImage(contentsOfFile: JailbreakTweakManager.shared.prefsAssetsPath + "/CSAppearanceBanner.png") else { return }
+        let screenWidth: CGFloat = UIScreen.main.bounds.width
+        let aspectRatio: CGFloat = image.size.height / image.size.width
+        let calculatedHeight: CGFloat = screenWidth * aspectRatio
+        headerView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: calculatedHeight)
+        
+        let bannerImageView = UIImageView(image: image)
+        bannerImageView.contentMode = .scaleAspectFit
         bannerImageView.translatesAutoresizingMaskIntoConstraints = false
         headerView.addSubview(bannerImageView)
         
         NSLayoutConstraint.activate([
-            bannerImageView.topAnchor.constraint(equalTo: headerView.topAnchor, constant: -50),
+            bannerImageView.topAnchor.constraint(equalTo: headerView.topAnchor),
             bannerImageView.leadingAnchor.constraint(equalTo: headerView.leadingAnchor),
             bannerImageView.trailingAnchor.constraint(equalTo: headerView.trailingAnchor),
-            bannerImageView.bottomAnchor.constraint(equalTo: headerView.bottomAnchor),
+            bannerImageView.bottomAnchor.constraint(equalTo: headerView.bottomAnchor)
         ])
     }
 }

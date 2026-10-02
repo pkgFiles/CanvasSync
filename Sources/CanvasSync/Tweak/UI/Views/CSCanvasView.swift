@@ -55,14 +55,14 @@ class CSCanvasView: UIView {
         
         // Setting up the artwork to the 'CSCanvasView'
         if configuration.isArtworkEnabled {
-            let artworkImageView = CSCanvasArtworkImageView(frame: .zero)
+            let artworkImageView = CSCanvasArtworkImageView(isTransitionEnabled: configuration.isTransitionEnabled, transitionSpeed: configuration.transitionSpeed)
             addAndPinSubview(artworkImageView)
             self.canvasArtworkImageView = artworkImageView
         }
         
         // Setting up the player for the canvas to the 'CSCanvasView'
         if configuration.isCanvasEnabed {
-            let playerView = CSCanvasPlayerView(frame: .zero)
+            let playerView = CSCanvasPlayerView(isTransitionEnabled: configuration.isTransitionEnabled, transitionSpeed: configuration.transitionSpeed)
             addAndPinSubview(playerView)
             self.canvasPlayerView = playerView
         }

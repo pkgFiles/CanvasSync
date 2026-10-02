@@ -37,10 +37,8 @@ class MediaControllerHook: ClassHook<SBMediaController> {
         Task { @MainActor in
             guard let _ = info as? NSDictionary else { CSCanvasArtworkProvider.shared.handleClearingStatus(); return }
             
-            // Set the artwork for the current playing song.
-            // Updating the artwork should always be happen, even if the song has a canvas in the filesystem.
             do {
-                try await CSCanvasArtworkProvider.shared.updateArtwork()
+                try await CSCanvasArtworkProvider.shared.handleTrackStatus()
             } catch {
                 guard let rootViewController = rootViewController() else { return }
                 let error = CSCanvasArtworkProvider.ProviderError(map: error)

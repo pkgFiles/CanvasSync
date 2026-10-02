@@ -28,10 +28,16 @@ import UIKit
 
 class CSCanvasArtworkImageView: UIImageView {
 
+    //MARK: - Variables
+    private let isTransitionEnabled: Bool
+    private let transitionSpeed: CGFloat
+    
     //MARK: - Initializers
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(isTransitionEnabled: Bool, transitionSpeed: CGFloat) {
+        self.isTransitionEnabled = isTransitionEnabled
+        self.transitionSpeed = transitionSpeed
         
+        super.init(frame: .zero)
         setupComponent()
     }
     
@@ -46,6 +52,9 @@ class CSCanvasArtworkImageView: UIImageView {
     }
     
     func setArtwork(with newImage: UIImage?) {
-        self.image = newImage
+        guard isTransitionEnabled else { self.image = newImage; return }
+        UIView.transition(with: self, duration: transitionSpeed, options: .transitionCrossDissolve, animations: {
+            self.image = newImage
+        }, completion: nil)
     }
 }

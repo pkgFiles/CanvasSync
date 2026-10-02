@@ -70,4 +70,10 @@ final class CSNowPlayingInfo {
             }
         }
     }
+    
+    func isSpotifyCurrentPlaying(bundleIdentifier: String) -> Bool {
+        guard let mediaController = SBMediaController.sharedInstance(),
+              let nowPlayingApplication = mediaController.nowPlayingApplication else { return false }
+        return bundleIdentifier == nowPlayingApplication.bundleIdentifier
+    }
 }

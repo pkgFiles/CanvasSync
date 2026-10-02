@@ -40,7 +40,9 @@ class HomescreenWallpaperHook: ClassHook<SBHomeScreenViewController> {
         let configuration: CanvasConfiguration = .init(isArtworkEnabled: (settings.canvasStyle == .both || settings.canvasStyle == .artwork),
                                                        isCanvasEnabed: (settings.canvasStyle == .both || settings.canvasStyle == .canvas),
                                                        isGradientEnabled: settings.isGradientEffectEnabled,
-                                                       gradientAlpha: settings.canvasGradientSize.alpha)
+                                                       isTransitionEnabled: settings.isTransitionEnabled,
+                                                       gradientAlpha: settings.canvasGradientSize.alpha,
+                                                       transitionSpeed: settings.transitionSpeed.speed)
         let canvasView: CSCanvasView = .init(configuration: configuration)
         self.target.view.insertSubview(canvasView, at: 0)
         NSLayoutConstraint.activate([

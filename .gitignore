@@ -26,3 +26,4 @@ Preferences/Sources/CanvasSyncPrefs/Core/Managers/JailbreakTweakManager.swift
 Preferences/Sources/CanvasSyncPrefs/Core/Managers/JailbreakTweakPreferencesManager.swift
 Preferences/Sources/CanvasSyncPrefs/Core/Models/PackageConfiguration.swift
 Preferences/Sources/CanvasSyncPrefs/Core/Models/SettingsModel.swift
+Preferences/Sources/CanvasSyncPrefs/Core/Extensions/UIImage+resized.swift

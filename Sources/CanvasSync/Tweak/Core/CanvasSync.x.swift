@@ -38,18 +38,16 @@ struct CSSetNowPlayingInfo: HookGroup {}
 struct CSLockscreen: HookGroup { let lockscreenEnabled: Bool }
 struct CSHomescreen: HookGroup { let homescreenEnabled: Bool }
 struct CSSpringBoardDock: HookGroup { let isDockBackgroundHidden: Bool }
-struct CSSpringBoardBacklight: HookGroup {}
+struct CSSpringBoardBacklightModern: HookGroup {}
+struct CSSpringBoardBacklightLegacy: HookGroup {}
 
 //MARK: - Initialize Tweak
 final class CanvasSync: Tweak {
 
     init() {
-        remLog("Preferences Loading...")
-
         let playingInfoHook: CSSetNowPlayingInfo = CSSetNowPlayingInfo()
         let lockscreenHook: CSLockscreen = CSLockscreen(lockscreenEnabled: settings.canvasAppearance == .both || settings.canvasAppearance == .lockscreen)
         let homescreenHook: CSHomescreen = CSHomescreen(homescreenEnabled: settings.canvasAppearance == .both || settings.canvasAppearance == .homescreen)
-        let springboardBacklightHook: CSSpringBoardBacklight = CSSpringBoardBacklight()
         let springboardDockHook: CSSpringBoardDock = CSSpringBoardDock(isDockBackgroundHidden: settings.isDockBackgroundHidden)
         
         switch settings.isTweakEnabled {
@@ -59,7 +57,7 @@ final class CanvasSync: Tweak {
             
             if lockscreenHook.lockscreenEnabled {
                 lockscreenHook.activate()
-                springboardBacklightHook.activate()
+                if #available(iOS 16.0, *) { CSSpringBoardBacklightModern().activate() } else { CSSpringBoardBacklightLegacy().activate() }
             }
             
             if homescreenHook.homescreenEnabled {

@@ -77,7 +77,9 @@ class CSSingleCreditCell: PSTableCell {
         ])
     }
     
-    func configure(for developer: Developer, with defaultAvatar: UIImage?) { twitterCellView.configure(with: developer, defaultAvatar: defaultAvatar) }
+    func configure(for developer: Developer, with defaultAvatar: UIImage?) {
+        twitterCellView.configure(with: developer, defaultAvatar: defaultAvatar)
+    }
     
     //MARK: - Actions
     @objc private func didTapCell() { delegate?.openWebsite(.twitterX) }

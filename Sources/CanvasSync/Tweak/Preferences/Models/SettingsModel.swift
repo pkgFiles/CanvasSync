@@ -48,13 +48,27 @@ struct SettingsModel: Codable {
         }
     }
     
+    enum CanvasTransitionSpeed: Int, Codable {
+        case slow, medium, fast
+        
+        var speed: CGFloat {
+            switch self {
+            case .slow:     return 0.60
+            case .medium:   return 0.30
+            case .fast:     return 0.15
+            }
+        }
+    }
+    
     // General
     var isTweakEnabled: Bool = false
     var canvasAppearance: CanvasAppearance = .both
     
     // Appearance
     var isGradientEffectEnabled: Bool = true
+    var isTransitionEnabled: Bool = true
     var isDockBackgroundHidden: Bool = false
     var canvasStyle: CanvasStyle = .both
     var canvasGradientSize: CanvasGradientSize = .medium
+    var transitionSpeed: CanvasTransitionSpeed = .medium
 }

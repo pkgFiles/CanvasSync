@@ -28,11 +28,25 @@ import Orion
 import CanvasSyncC
 
 @available(iOS 15, *)
-class BacklightControllerHook: ClassHook<SBBacklightController> {
-    typealias Group = CSSpringBoardBacklight
+class BacklightControllerModernHook: ClassHook<SBBacklightController> {
+    typealias Group = CSSpringBoardBacklightModern
     
     func setBacklightState(_ state: Int64, source: Int64, animated: Bool, completion: (() -> Void)?) {
         orig.setBacklightState(state, source: source, animated: animated, completion: completion)
+        
+        Task { @MainActor in
+            guard let mediaController = SBMediaController.sharedInstance() else { return }
+            CSCanvasArtworkProvider.shared.handlePlayingStatus(for: target.screenIsOn && mediaController.isPlaying())
+        }
+    }
+}
+
+@available(iOS 15, *)
+class BacklightControllerLegacyHook: ClassHook<SBBacklightController> {
+    typealias Group = CSSpringBoardBacklightLegacy
+    
+    func animateBacklightToFactor(_ factor: Float, duration: Double, source: Int64, completion: (() -> Void)?) {
+        orig.animateBacklightToFactor(factor, duration: duration, source: source, completion: completion)
         
         Task { @MainActor in
             guard let mediaController = SBMediaController.sharedInstance() else { return }

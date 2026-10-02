@@ -20,6 +20,7 @@
 @end
 
 @interface SBApplication : NSObject
+@property (nonatomic,copy,readonly) NSString *bundleIdentifier;
 -(SBApplicationInfo *)info;
 @end
 
@@ -49,10 +50,16 @@
 @end
 
 @interface SBMediaController : NSObject
+@property (nonatomic,weak,readonly) SBApplication *nowPlayingApplication;
 +(instancetype)sharedInstance;
 -(BOOL)isPlaying;
 -(BOOL)isPaused;
 @end
 
 @interface NSDistributedNotificationCenter: NSNotificationCenter
+@end
+
+
+@interface MRUArtworkView : UIControl
+@property (nonatomic,retain) UIImage * artworkImage;    
 @end

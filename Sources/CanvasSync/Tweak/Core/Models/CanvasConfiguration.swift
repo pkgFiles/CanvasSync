@@ -31,5 +31,7 @@ struct CanvasConfiguration {
     let isArtworkEnabled: Bool
     let isCanvasEnabed: Bool
     let isGradientEnabled: Bool
+    let isTransitionEnabled: Bool
     let gradientAlpha: CGFloat
+    let transitionSpeed: CGFloat
 }

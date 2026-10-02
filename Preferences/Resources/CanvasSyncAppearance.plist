@@ -86,6 +86,52 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>label</key>
+			<string>Transitions</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>CanvasSyncPrefs.CSSwitchCell</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>com.pkgfiles.canvassyncprefs</string>
+			<key>key</key>
+			<string>isTransitionEnabled</string>
+			<key>cellTitleLabel</key>
+			<string>Enabled</string>
+			<key>cellSubtitleLabel</key>
+			<string>Enable/Disable transition animations for the artwork or canvas.</string>
+			<key>height</key>
+			<real>60</real>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSegmentCell</string>
+			<key>detail</key>
+			<string>PSListItemsController</string>
+			<key>default</key>
+			<integer>1</integer>
+			<key>defaults</key>
+			<string>com.pkgfiles.canvassyncprefs</string>
+			<key>key</key>
+			<string>transitionSpeed</string>
+			<key>validTitles</key>
+			<array>
+				<string>Slow</string>
+				<string>Medium</string>
+				<string>Fast</string>
+			</array>
+			<key>validValues</key>
+			<array>
+				<integer>0</integer>
+				<integer>1</integer>
+				<integer>2</integer>
+			</array>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
 			<string>Extras</string>
 		</dict>
         <dict>

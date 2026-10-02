@@ -41,14 +41,18 @@ class CSCanvasPlayerView: UIView {
     
     //MARK: - Variables
     private var playerLooper: AVPlayerLooper?
+    private let isTransitionEnabled: Bool
+    private let transitionSpeed: CGFloat
     
     //MARK: - Overrides
     override class var layerClass: AnyClass { return AVPlayerLayer.self }
     
     //MARK: - Initializer
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(isTransitionEnabled: Bool, transitionSpeed: CGFloat) {
+        self.isTransitionEnabled = isTransitionEnabled
+        self.transitionSpeed = transitionSpeed
         
+        super.init(frame: .zero)
         setupUI()
     }
     
@@ -74,8 +78,12 @@ class CSCanvasPlayerView: UIView {
         let canvasURL = URL(fileURLWithPath: path)
         let canvasAsset = AVAsset(url: canvasURL)
         let newPlayerItem = AVPlayerItem(asset: canvasAsset)
-        playerLooper = AVPlayerLooper(player: canvasPlayer, templateItem: newPlayerItem)
         canvasPlayer.play()
+        
+        guard isTransitionEnabled else { playerLooper = AVPlayerLooper(player: canvasPlayer, templateItem: newPlayerItem); return }
+        UIView.transition(with: self, duration: transitionSpeed, options: .transitionCrossDissolve, animations: {
+            self.playerLooper = AVPlayerLooper(player: self.canvasPlayer, templateItem: newPlayerItem)
+        }, completion: nil)
     }
     
     func currentItemURL() -> URL? {

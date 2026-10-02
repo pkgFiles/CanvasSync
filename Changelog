@@ -1,3 +1,10 @@
+2.0.1
+- Fixed crashes on iOS 15
+- Fixed an issue where the canvas never got cleared, if the now playing application has been changed without killing Spotify
+- Fixed some alignment issues for the images in the PreferenceBundle for bigger devices
+- Added a new option in preferences for transitions between changes of artworks or canvases
+- Smaller improvements for the PreferenceBundle
+
 2.0
 - Added Support for iOS 17 & 18
 - Added Support for RootHide
